@@ -1,3 +1,4 @@
+
 async function makePrediction() {
   
   var prob = document.getElementById('prob2');
@@ -12,7 +13,7 @@ async function makePrediction() {
   
   console.log("model loaded...");
 
-  const s = seq.value;  
+  const s = seq.value.replace(/\r?\n|\r/g,'');  
   const t=s.replace(/A/g,'0').replace(/T/g,'1').replace(/U/g,'1').replace(/C/g,'2').replace(/G/g,'3')
   const y = tf.oneHot(tf.tensor1d(t.split(''),'int32'),4);
   const z = y.reshape([1,200,4]);
@@ -24,5 +25,5 @@ async function makePrediction() {
   prob.innerHTML = "<br><br>Probability of G4 complex:   " + result;
 }
 
-// Example of valid input: 
+// Example: 
 // GAGACACCACTACAGTTAGCAGTGAGTGTAAAATAATGAGTGTCAGAAACTTATATTGGGTGATTTCATTTTTAAAAGTAACCAAAGTGAAAAATGAAGCCTTGCGTTTTTGCTTAAATGATTTACAAAAAATATTTGATGTCCATCCTGGGATAGGGAATTCCTCCCCCATAACTTTGAAAGTGCAGTTGCTTCATTCC
