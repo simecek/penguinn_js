@@ -13,8 +13,8 @@ async function makePrediction() {
   
   console.log("model loaded...");
 
-  const s = seq.value.replace(/\r?\n|\r/g,'');  
-  const t=s.replace(/A/g,'0').replace(/T/g,'1').replace(/U/g,'1').replace(/C/g,'2').replace(/G/g,'3')
+  const s = seq.value.replace(/\r?\n|\r/g,'').replace(/\s/g, '');  
+  const t = s.replace(/A/g,'0').replace(/T/g,'1').replace(/U/g,'1').replace(/C/g,'2').replace(/G/g,'3').replace(/N/g,'9')
   const y = tf.oneHot(tf.tensor1d(t.split(''),'int32'),4);
   const z = y.reshape([1,200,4]);
   
