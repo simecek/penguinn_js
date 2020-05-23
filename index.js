@@ -11,6 +11,7 @@ function prolongSequence(sequence, size) {
 
 
 function validateSequence(sequence, size) {
+  
   if (sequence.length > size) {
     return 'The sequence is too long. The sequence needs to be shorter or equal to '.concat(size, '.');
   } else if ('' != sequence.replace(/A/g,'').replace(/T/g,'').replace(/U/g,'').replace(/C/g,'').replace(/G/g,'').replace(/N/g,'')) {
@@ -18,12 +19,13 @@ function validateSequence(sequence, size) {
   } else {
     return '';
   }
+  
 }
 
 
 function formatOutput(sequence, result, error) {
   
-  var output = "<br><br><b>Input:</b> ".concat(sequence, "<br><br>");
+  var output = "<br><br><b>Input:</b><br><code>".concat(sequence.replace(/(.{50})/g,"$1<br>"), "</code><br><br>");
   if (error) {
     output = output.concat("<b>Error:</b><br>", result);
   } else {
@@ -60,13 +62,13 @@ async function makePrediction() {
     return 1;
   }
   if (s.length < 200) {
-    var sp = prolongSequence(s, 200);
+    var s2 = prolongSequence(s, 200);
   } else {
-    var sp = s;
+    var s2 = s;
   }
   
   // one-hot encoding
-  const t = sp.replace(/A/g,'0').replace(/T/g,'1').replace(/U/g,'1').replace(/C/g,'2').replace(/G/g,'3').replace(/N/g,'9')
+  const t = s2.replace(/A/g,'0').replace(/T/g,'1').replace(/U/g,'1').replace(/C/g,'2').replace(/G/g,'3').replace(/N/g,'9')
   const y = tf.oneHot(tf.tensor1d(t.split(''),'int32'),4);
   const z = y.reshape([1,200,4]);
   
