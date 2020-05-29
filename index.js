@@ -63,7 +63,7 @@ async function makePrediction() {
   // clear the model variable
   var model = undefined;
   // load model
-  model = await tf.loadLayersModel("https://raw.githubusercontent.com/simecek/penguinn_js/master/assets/model.json");
+  model = await tf.loadLayersModel("https://raw.githubusercontent.com/ML-Bioinfo-CEITEC/penguinn/gh-pages/assets/model.json");
   console.log("model loaded...");
 
   // parse input text into the array of sequences
