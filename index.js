@@ -7,9 +7,11 @@ function prolongSequence(sequence, size) {
   return leftNs.concat(sequence, rightNs);
 }
 
-function validateSequence(sequence, size) {
-  if (sequence.length > size) {
-    return 'The sequence is too long. The sequence needs to be shorter or equal to '.concat(size, '.');
+function validateSequence(sequence, minSize=20, maxSize=200) {
+  if (sequence.length > maxSize) {
+    return 'The sequence is too long. The sequence needs to be shorter or equal to '.concat(maxSize, '.');
+  } else if (sequence.length < minSize) {
+    return 'The sequence is too short. The sequence needs to be longer or equal to '.concat(minSize, '.');
   } else if ('' != sequence.replace(/A/g,'').replace(/T/g,'').replace(/U/g,'').replace(/C/g,'').replace(/G/g,'').replace(/N/g,'')) {
     return 'The sequence must consist only of "A", "C", "T", "G", "U" and "N" characters.';
   } else {
@@ -24,7 +26,7 @@ function formatOutput(sequence, result, error=0, seq_name='') {
   }
   output = output.concat(sequence.replace(/(.{50})/g,"$1<br/>"), "</seqtext>");
   if (error) {
-    output = output.concat("<b>Error:</b><br/>", result);
+    output = output.concat("<b>Error:</b><br/><br/>", result, '<br/><br/><br/>');
   } else {
     output = output.concat("<b>Output:</b><br/><br/>Probability of G4 complex =   ", result, '<br/><br/><br/>');
   }
@@ -78,7 +80,7 @@ async function makePrediction() {
     var s = seqArray[i].seq.toUpperCase();
     
     // check the sequence format
-    const validation = validateSequence(s, 200)
+    const validation = validateSequence(s, 20, 200)
     if (validation != '') {
       console.log("wrong input...");
       prob.innerHTML += formatOutput(s, validation, 1, seqArray[i].name);
