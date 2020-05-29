@@ -2,7 +2,7 @@
 
 My first TensorflowJS app. The input is 200bp string of letters A, C, T and G. The output is a probability of G4 complex. The model was developed by my colleagues.
 
-This version is now **obsolete**, since *Penguinn JS* lives in the [gh-pages](https://github.com/ML-Bioinfo-CEITEC/penguinn/tree/gh-pages) branch of [Penguinn](https://github.com/ML-Bioinfo-CEITEC/penguinn) GitHub repo.
+This version is now **obsolete**, since *Penguinn JS* has been moved to the [gh-pages](https://github.com/ML-Bioinfo-CEITEC/penguinn/tree/gh-pages) branch of [Penguinn](https://github.com/ML-Bioinfo-CEITEC/penguinn) GitHub repo.
 
 **Web page**:  
 http://simecek.xyz/penguinn_js/
