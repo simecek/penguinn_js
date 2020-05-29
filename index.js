@@ -28,7 +28,13 @@ function formatOutput(sequence, result, error=0, seq_name='') {
   if (error) {
     output = output.concat("<b>Error:</b><br/><br/>", result, '<br/><br/><br/>');
   } else {
-    output = output.concat("<b>Output:</b><br/><br/>Probability of G4 complex =   ", result, '<br/><br/><br/>');
+    if (result > 0.85) {
+      output = output.concat("<b>Output:</b><br/><br/>Probability of G4 complex =   ", result, ', higher than PENGUINN Sensitive score threshold.<br/><br/><br/>');
+    } else if (result > 0.85) {
+      output = output.concat("<b>Output:</b><br/><br/>Probability of G4 complex =   ", result, ', higher than PENGUINN Precise score threshold.<br/><br/><br/>');
+    } else {
+      output = output.concat("<b>Output:</b><br/><br/>Probability of G4 complex =   ", result, ', sequence does not pass PENGUINN threshold.<br/><br/><br/>');
+    }  
   }
 
   return output
